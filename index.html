@@ -27,7 +27,6 @@
     <h1 class="glitch">TNS Studios</h1>
 </div>
 
-<audio id="introSound" src="intro.mp3"></audio>
 
 <div id="cursor"></div>
 
@@ -54,7 +53,7 @@
 <div class="container">
 
     <!-- HOME -->
-    <div id="welcome" class="page welcome">
+    <divyRZUjgHUR56v7u id="welcome" class="page welcome">
         <h2>👋 Welcome to TNS Studios ⚡</h2>
 
         <p>
@@ -192,33 +191,6 @@
 </div>
 
 <script src="script.js"></script>
-
-<!-- 🔊 INTRO FIX (nur Sound + Animation korrekt) -->
-<script>
-window.addEventListener("load", () => {
-    const intro = document.getElementById("intro");
-    const sound = document.getElementById("introSound");
-
-    let started = false;
-
-    function startIntro() {
-        if (started) return;
-        started = true;
-
-        sound.volume = 0.6;
-        sound.play().catch(err => console.log("Sound blockiert:", err));
-
-        setTimeout(() => {
-            intro.style.opacity = "0";
-            setTimeout(() => intro.remove(), 800);
-        }, 3000);
-    }
-
-    // Klick + Tastendruck als Start
-    window.addEventListener("click", startIntro);
-    window.addEventListener("keydown", startIntro);
-});
-</script>
 
 </body>
 </html>
