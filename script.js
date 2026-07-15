@@ -160,11 +160,11 @@ function resetText() {
 // FEEDBACK (EMAILJS)
 // =======================
 function openFeedback() {
-    document.getElementById("feedbackBox").style.display = "flex";
+    document.getElementById("feedbackBox").style.visibility = "visible";
 }
 
 function closeFeedback() {
-    document.getElementById("feedbackBox").style.display = "none";
+    document.getElementById("feedbackBox").style.visibility = "hidden";
 }
 
 function sendFeedback() {
