@@ -2,14 +2,17 @@
 body {
     margin: 0;
     font-family: Arial;
-    background: radial-gradient(circle at top, #1a0000, #000000);
+    background:
+        radial-gradient(circle at top, #1a0000, #000000),
+        radial-gradient(circle at bottom, rgba(255,0,0,0.08), transparent);
     color: white;
     text-align: center;
     overflow-x: hidden;
+    transition: 0.4s ease;
 }
 
 /* 🔥 GLOW TEXT */
-h1, h2 {
+h1, h2 , h3, h4, h5, h6, p {
     text-shadow: 0 0 10px red;
 }
 
@@ -17,8 +20,8 @@ h1, h2 {
 .topbar {
     padding: 20px;
     background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,0,0,0.2);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,0,0,0.25);
 }
 
 /* SEARCH */
@@ -31,6 +34,11 @@ input {
     margin-top: 10px;
     background: #111;
     color: white;
+    transition: 0.3s;
+}
+
+input:focus {
+    box-shadow: 0 0 15px red;
 }
 
 /* MENU */
@@ -47,37 +55,45 @@ button {
     background: linear-gradient(45deg, #ff0000, #660000);
     color: white;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.25s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 /* HOVER */
 button:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 20px red;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px red;
+}
+
+/* CLICK FEEL */
+button:active {
+    transform: scale(0.96);
 }
 
 /* 📄 CARDS */
 .page {
     display: none;
-    background: rgba(20,20,20,0.8);
+    background: rgba(20,20,20,0.85);
     width: 400px;
     margin: 25px auto;
     padding: 20px;
     border-radius: 15px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(255,0,0,0.2);
-
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 35px rgba(255,0,0,0.2);
     opacity: 0;
-    transform: translateY(20px);
-    transition: 0.4s;
+    transform: translateY(25px) scale(0.97);
+    filter: blur(5px);
+    transition: 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .page.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
 
-/* 👋 WELCOME SPECIAL */
+/* 👋 WELCOME */
 .welcome {
     border: 2px solid red;
     animation: glow 2s infinite alternate;
@@ -100,14 +116,21 @@ button:hover {
     color: white;
     border: none;
     cursor: pointer;
-    box-shadow: 0 0 15px red;
+    box-shadow: 0 0 20px red;
+    transition: 0.3s;
+}
+
+.settings-btn:hover,
+.feedback-btn:hover,
+.inbox-btn:hover {
+    transform: scale(1.1);
 }
 
 .settings-btn { top: 15px; right: 15px; }
 .feedback-btn { bottom: 15px; right: 15px; }
 .inbox-btn { bottom: 80px; right: 15px; }
 
-/* 💬 POPUPS */
+/* POPUP */
 .popup {
     position: fixed;
     bottom: -400px;
@@ -116,9 +139,9 @@ button:hover {
     background: rgba(15,15,15,0.95);
     padding: 20px;
     border-radius: 15px;
-    transition: 0.4s;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    transition: 0.4s ease;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
 }
 
 .popup.show {
@@ -141,49 +164,6 @@ a {
     color: #ff3c3c;
 }
 
-/* 🌙 LIGHT MODE FIX */
-.light {
-    background: #f5f5f5;
-    color: #111;
-}
-
-.light .topbar {
-    background: #ffffff;
-    border-bottom: 1px solid #ccc;
-}
-
-.light .page {
-    background: #ffffff;
-    color: #111;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-/* TEXT */
-.light p,
-.light h1,
-.light h2,
-.light h3 {
-    color: #111;
-}
-
-/* INPUT */
-.light input,
-.light textarea {
-    background: #eee;
-    color: #111;
-}
-
-/* BUTTON */
-.light button {
-    background: #ff3c3c;
-    color: white;
-}
-
-/* LINKS */
-.light a {
-    color: #cc0000;
-}
-
 /* 💀 INTRO */
 #intro {
     position: fixed;
@@ -194,10 +174,10 @@ a {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: 1s;
+    transition: 1s ease;
 }
 
-/* GLITCH TEXT */
+/* GLITCH */
 .glitch {
     font-size: 40px;
     color: white;
@@ -213,17 +193,52 @@ a {
     100% { text-shadow: 2px 2px red; }
 }
 
-/* 🖱️ CURSOR */
+/* 🖱️ CURSOR (ULTRA SMOOTH) */
 #cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     background: red;
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px red, 0 0 40px red;
+    box-shadow: 0 0 25px red, 0 0 45px rgba(255,0,0,0.6);
     z-index: 9998;
+    transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 🔍 SEARCH */
+.search-results {
+    width: 220px;
+    margin: 10px auto;
+    background: rgba(20,20,20,0.9);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.search-item {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.search-item:hover {
+    background: rgba(255,0,0,0.25);
+}
+
+/* HIGHLIGHT */
+.highlight {
+    background: red;
+    color: white;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+/* RESULT TEXT */
+#resultCount {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.8;
 }
 
 /* 📱 MOBILE */
@@ -256,41 +271,204 @@ a {
     }
 }
 
-.page {
-    transition: 0.3s;
+/* 🌙 LIGHT MODE (NEXT LEVEL CLEAN) */
+.light {
+    background: #f5f7fb;
+    color: #111;
 }
 
-/* 🔍 SEARCH RESULTS BOX */
-.search-results {
-    width: 220px;
-    margin: 10px auto;
-    background: rgba(20,20,20,0.9);
-    border-radius: 10px;
-    padding: 5px;
+/* TOPBAR */
+.light .topbar {
+    background: rgba(255,255,255,0.85);
+    border-bottom: 1px solid #ddd;
 }
 
-/* ITEM */
-.search-item {
-    padding: 8px;
-    cursor: pointer;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+/* CARDS */
+.light .page {
+    background: #ffffff;
+    color: #111;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-.search-item:hover {
-    background: rgba(255,0,0,0.2);
+/* TEXT */
+.light p,
+.light h1,
+.light h2,
+.light h3 {
+    color: #b30000;
 }
 
-/* HIGHLIGHT */
-.highlight {
+/* INPUT */
+.light input,
+.light textarea {
+    background: #eee;
+    color: #111;
+    border: 1px solid #ccc;
+}
+
+/* BUTTON */
+.light button {
+    background: linear-gradient(45deg, #ff3c3c, #b30000);
+}
+
+/* LINKS */
+.light a {
+    color: #cc0000;
+}
+
+/* SEARCH */
+.light .search-results {
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.light .search-item:hover {
+    background: rgba(255,0,0,0.08);
+}
+
+/* CURSOR LIGHT */
+.light #cursor {
     background: red;
-    color: white;
-    padding: 2px;
-    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(255,0,0,0.4);
 }
 
-/* RESULT TEXT */
-#resultCount {
-    margin-top: 5px;
-    font-size: 14px;
-    opacity: 0.8;
+/* INTRO */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    animation: fadeOut 3s ease forwards;
+    animation-delay: 2.5s;
+}
+
+.glitch {
+    font-size: 50px;
+    color: white;
+    text-shadow: 0 0 20px red;
+    animation: glitch 0.2s infinite, zoomIn 2s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 0 red; }
+    25% { text-shadow: -2px -2px blue; }
+    50% { text-shadow: 2px 2px red; }
+    75% { text-shadow: -2px 2px blue; }
+    100% { text-shadow: 2px 0 red; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+#intro {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Haupt Text */
+#intro .glitch {
+    font-size: 4rem;
+    color: white;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    animation: flicker 2s infinite;
+}
+
+/* Glitch Layers */
+#intro .glitch::before,
+#intro .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+    opacity: 0.7;
+}
+
+/* Rot + Blau Shift */
+#intro .glitch::before {
+    color: red;
+    transform: translate(-3px, 2px);
+    animation: glitchMove 2s infinite;
+}
+
+#intro .glitch::after {
+    color: cyan;
+    transform: translate(3px, -2px);
+    animation: glitchMove2 2s infinite;
+}
+
+/* Ränder + Ecken glitch */
+#intro::before,
+#intro::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,0.03) 3px
+    );
+    animation: scan 3s linear infinite;
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes glitchMove {
+    0%,100% { transform: translate(-3px,2px); }
+    50% { transform: translate(-5px,-1px); }
+}
+
+@keyframes glitchMove2 {
+    0%,100% { transform: translate(3px,-2px); }
+    50% { transform: translate(6px,1px); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    5% { opacity: 0.6; }
+    10% { opacity: 1; }
+    20% { opacity: 0.4; }
+    25% { opacity: 1; }
+}
+
+@keyframes scan {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(10px,10px); }
+}
+
+/* 💥 Random glitch burst */
+.glitch-burst {
+    animation: burst 0.2s linear;
+}
+
+@keyframes burst {
+    0% { transform: translate(0); filter: contrast(1); }
+    25% { transform: translate(-5px, 2px); }
+    50% { transform: translate(5px, -2px); }
+    100% { transform: translate(0); }
 }
